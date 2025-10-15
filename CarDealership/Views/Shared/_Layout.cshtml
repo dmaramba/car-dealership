@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Car Sales</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CarSales.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-semibold d-flex align-items-center gap-2"
+                   asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Car Sales</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav" aria-controls="navbarNav"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Left nav -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="bi bi-house-door-fill me-1"></i> Home
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Vehicles" asp-action="Index">
+                                <i class="bi bi-car-front-fill me-1"></i> Vehicles
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Customers" asp-action="Index">
+                                <i class="bi bi-people-fill me-1"></i> Customers
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <!-- Vehicle quick search -->
+                    <form class="d-flex me-3" asp-area="" asp-controller="Vehicles" asp-action="Search" method="get" role="search">
+                        <input class="form-control form-control-sm me-2" type="search" name="q"
+                               placeholder="Search make, model, year…" aria-label="Search">
+                        <button class="btn btn-sm btn-outline-light" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+
+                    <!-- Right side (Login/Logout partial) -->
+                    @await Html.PartialAsync("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div class="pb-3">
+            @RenderBody()
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer border-top text-muted text-center mt-auto py-3">
+        <div class="container">
+            <small>
+                &copy; 2025 - <strong>CarSales</strong> |
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
+            </small>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
